@@ -27,9 +27,6 @@ import Post from "./components/post/Post";
 import "./App.css";
 import { clearCurrentProfile } from "./actions/profileActions";
 
-/* COOKIES */
-import { CookiesProvider } from "react-cookie";
-import { withCookies } from "react-cookie";
 
 //Check for token
 if (localStorage.jwtToken) {
@@ -55,66 +52,64 @@ if (localStorage.jwtToken) {
 class App extends Component {
   render() {
     return (
-      <CookiesProvider>
-        <Provider store={store}>
-          <Router>
-            <div className="App">
-              <Navbar />
-              <Route
-                exact
-                path="/"
-                render={() => <Landing cookies={this.props.cookies} />}
-              />
-              <div className="container">
-                <Route exact path="/register" component={Register} />
-                <Route exact path="/login" component={Login} />
-                <Route exact path="/profiles" component={Profiles} />
-                <Route exact path="/profile/:handle" component={Profile} />
-                <Switch>
-                  <PrivateRoute exact path="/dashboard" component={Dashboard} />
-                </Switch>
-                <Switch>
-                  <PrivateRoute
-                    exact
-                    path="/create-profile"
-                    component={CreateProfile}
-                  />
-                </Switch>
-                <Switch>
-                  <PrivateRoute
-                    exact
-                    path="/edit-profile"
-                    component={EditProfile}
-                  />
-                </Switch>
-                <Switch>
-                  <PrivateRoute
-                    exact
-                    path="/add-experience"
-                    component={AddExperience}
-                  />
-                </Switch>
-                <Switch>
-                  <PrivateRoute
-                    exact
-                    path="/add-education"
-                    component={AddEducation}
-                  />
-                </Switch>
-                <Switch>
-                  <PrivateRoute exact path="/feed" component={Posts} />
-                </Switch>
-                <Switch>
-                  <PrivateRoute exact path="/post/:id" component={Post} />
-                </Switch>
-              </div>
-              <Footer />
+      <Provider store={store}>
+        <Router>
+          <div className="App">
+            <Navbar />
+            <Route
+              exact
+              path="/"
+              render={() => <Landing cookies={this.props.cookies} />}
+            />
+            <div className="container">
+              <Route exact path="/register" component={Register} />
+              <Route exact path="/login" component={Login} />
+              <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:handle" component={Profile} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/edit-profile"
+                  component={EditProfile}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-experience"
+                  component={AddExperience}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute
+                  exact
+                  path="/add-education"
+                  component={AddEducation}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/feed" component={Posts} />
+              </Switch>
+              <Switch>
+                <PrivateRoute exact path="/post/:id" component={Post} />
+              </Switch>
             </div>
-          </Router>
-        </Provider>
-      </CookiesProvider>
+            <Footer />
+          </div>
+        </Router>
+      </Provider>
     );
   }
 }
 
-export default withCookies(App);
+export default App;
